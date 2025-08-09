@@ -1,0 +1,1043 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нарек - Digital Маркетолог | Портфолио</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-yellow: #FFD700;
+            --cyber-blue: #00F5FF;
+            --neon-pink: #FF00AA;
+            --dark-bg: #0a0a0a;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 0, 170, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+                        var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Анимированные частицы */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--cyber-blue);
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+            box-shadow: 0 0 6px var(--cyber-blue);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Навигация */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--neon-yellow), var(--cyber-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-links a:hover {
+            color: var(--dark-bg);
+            background: linear-gradient(45deg, var(--neon-yellow), var(--cyber-blue));
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+        }
+
+        /* Основной контент */
+        .page {
+            display: none;
+            padding: 100px 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero секция */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--neon-yellow), var(--cyber-blue), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            to { text-shadow: 0 0 30px rgba(0, 245, 255, 0.8), 0 0 40px rgba(255, 0, 170, 0.5); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Стеклянные карточки */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 245, 255, 0.2);
+            border-color: var(--cyber-blue);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transform: rotate(-45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
+            animation: shine 0.8s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(-45deg) translateY(-100%); }
+            100% { transform: rotate(-45deg) translateY(100%); }
+        }
+
+        /* Кнопки */
+        .neon-btn {
+            background: linear-gradient(45deg, var(--neon-yellow), var(--cyber-blue));
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            color: var(--dark-bg);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neon-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Сетка услуг */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(255, 0, 170, 0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--neon-pink), var(--cyber-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Статистика */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--glass-bg);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--neon-yellow);
+            display: block;
+        }
+
+        /* Портфолио галерея */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-item {
+            background: var(--glass-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .portfolio-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--neon-pink), var(--cyber-blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        /* Форма */
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: white;
+            backdrop-filter: blur(20px);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+        }
+
+        /* Калькулятор */
+        .calculator {
+            background: var(--glass-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            margin-top: 2rem;
+        }
+
+        .calc-service {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+
+        .calc-checkbox {
+            margin-right: 1rem;
+        }
+
+        .calc-total {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--neon-yellow);
+            font-weight: bold;
+        }
+
+        /* Блог */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .blog-post {
+            background: var(--glass-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 0, 170, 0.15);
+        }
+
+        .blog-image {
+            height: 150px;
+            background: linear-gradient(45deg, var(--cyber-blue), var(--neon-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Анимации появления */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Анимированные частицы -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">НАРЕК</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showPage('home')">Главная</a></li>
+                <li><a href="#" onclick="showPage('portfolio')">Портфолио</a></li>
+                <li><a href="#" onclick="showPage('services')">Услуги</a></li>
+                <li><a href="#" onclick="showPage('blog')">Блог</a></li>
+                <li><a href="#" onclick="showPage('contact')">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Главная страница -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <h1>DIGITAL МАРКЕТОЛОГ</h1>
+            <p>Превращаю идеи в прибыльные проекты уже 3 года</p>
+            <a href="#" onclick="showPage('contact')" class="neon-btn">Обсудить проект</a>
+        </section>
+
+        <div class="stats">
+            <div class="stat-item fade-in">
+                <span class="stat-number">150+</span>
+                <span>Проектов</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number">2.5M₽</span>
+                <span>Прибыль клиентов</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number">98%</span>
+                <span>Довольных клиентов</span>
+            </div>
+            <div class="stat-item fade-in">
+                <span class="stat-number">24/7</span>
+                <span>Поддержка</span>
+            </div>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">🎯</div>
+                <h3>Таргетированная реклама</h3>
+                <p>Настройка эффективных рекламных кампаний в соцсетях с ROI до 400%</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">✍️</div>
+                <h3>Копирайтинг</h3>
+                <p>Продающие тексты, которые конвертируют посетителей в покупателей</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">📱</div>
+                <h3>SMM продвижение</h3>
+                <p>Комплексное ведение социальных сетей с ростом до 200% в месяц</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🎨</div>
+                <h3>Веб-дизайн</h3>
+                <p>Современные сайты, которые продают и впечатляют</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🔍</div>
+                <h3>Контекстная реклама</h3>
+                <p>Эффективные кампании в Яндекс.Директ и Google Ads</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🏪</div>
+                <h3>Продвижение на Авито</h3>
+                <p>Увеличение продаж через крупнейшую торговую площадку</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Портфолио -->
+    <div id="portfolio" class="page">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; color: var(--neon-yellow);">Мои работы</h2>
+        
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-image">Интернет-магазин обуви</div>
+                <div class="portfolio-content">
+                    <h3>E-commerce проект</h3>
+                    <p>Увеличил конверсию на 340% за 3 месяца. Настроил полную воронку продаж от таргета до ретаргетинга.</p>
+                    <p><strong>Результат:</strong> Рост продаж с 200к до 880к в месяц</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <div class="portfolio-image">Медицинская клиника</div>
+                <div class="portfolio-content">
+                    <h3>SMM + Таргет</h3>
+                    <p>Комплексное продвижение клиники. Создал контент-стратегию и настроил таргетированную рекламу.</p>
+                    <p><strong>Результат:</strong> +250% записей на прием</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <div class="portfolio-image">Фитнес-студия</div>
+                <div class="portfolio-content">
+                    <h3>Веб-дизайн + Копирайтинг</h3>
+                    <p>Создал лендинг с высокой конверсией и написал продающие тексты.</p>
+                    <p><strong>Результат:</strong> Конверсия лендинга 15.2%</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <div class="portfolio-image">Автосалон</div>
+                <div class="portfolio-content">
+                    <h3>Авито + Контекст</h3>
+                    <p>Настроил продвижение на Авито и контекстную рекламу для автосалона.</p>
+                    <p><strong>Результат:</strong> +180% звонков, рост продаж на 2.1М₽</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <div class="portfolio-image">B2B Сервис</div>
+                <div class="portfolio-content">
+                    <h3>Полный комплекс</h3>
+                    <p>Создал сайт, настроил рекламу, написал тексты и вел соцсети.</p>
+                    <p><strong>Результат:</strong> С 0 до 500к оборот за 4 месяца</p>
+                </div>
+            </div>
+            
+            <div class="portfolio-item">
+                <div class="portfolio-image">Образовательные курсы</div>
+                <div class="portfolio-content">
+                    <h3>Инфопродукты</h3>
+                    <p>Запуск онлайн-курсов с нуля. Создал воронку продаж и креативы.</p>
+                    <p><strong>Результат:</strong> 1200+ продаж за первый запуск</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Услуги -->
+    <div id="services" class="page">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; color: var(--neon-yellow);">Услуги и прайс</h2>
+        
+        <div class="services-grid">
+            <div class="glass-card">
+                <h3>🎯 Таргетированная реклама</h3>
+                <ul style="list-style: none; padding: 1rem 0;">
+                    <li>• Настройка кампании - от 15 000₽</li>
+                    <li>• Ведение в месяц - от 25 000₽</li>
+                    <li>• Аудит рекламы - 8 000₽</li>
+                    <li>• A/B тестирование - 12 000₽</li>
+                </ul>
+            </div>
+            
+            <div class="glass-card">
+                <h3>✍️ Копирайтинг</h3>
+                <ul style="list-style: none; padding: 1rem 0;">
+                    <li>• Продающий текст - от 1 200₽/1000 зн.</li>
+                    <li>• Лендинг под ключ - от 18 000₽</li>
+                    <li>• Email-рассылка - от 3 000₽</li>
+                    <li>• Скрипт для видео - от 5 000₽</li>
+                </ul>
+            </div>
+            
+            <div class="glass-card">
+                <h3>📱 SMM продвижение</h3>
+                <ul style="list-style: none; padding: 1rem 0;">
+                    <li>• Ведение аккаунта - от 20 000₽/мес</li>
+                    <li>• Контент-план - от 8 000₽</li>
+                    <li>• Сторис в день - от 500₽</li>
+                    <li>• Дизайн поста - от 800₽</li>
+                </ul>
+            </div>
+            
+            <div class="glass-card">
+                <h3>🎨 Веб-дизайн</h3>
+                <ul style="list-style: none; padding: 1rem 0;">
+                    <li>• Лендинг - от 25 000₽</li>
+                    <li>• Многостраничный сайт - от 45 000₽</li>
+                    <li>• Интернет-магазин - от 65 000₽</li>
+                    <li>• Редизайн - от 15 000₽</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Калькулятор стоимости -->
+        <div class="calculator">
+            <h3 style="text-align: center; color: var(--cyber-blue); margin-bottom: 1rem;">Калькулятор стоимости</h3>
+            
+            <div class="calc-service">
+                <label>
+                    <input type="checkbox" class="calc-checkbox" data-price="25000"> Таргетированная реклама (25 000₽/мес)
+                </label>
+            </div>
+            
+            <div class="calc-service">
+                <label>
+                    <input type="checkbox" class="calc-checkbox" data-price="18000"> Лендинг под ключ (18 000₽)
+                </label>
+            </div>
+            
+            <div class="calc-service">
+                <label>
+                    <input type="checkbox" class="calc-checkbox" data-price="20000"> SMM ведение (20 000₽/мес)
+                </label>
+            </div>
+            
+            <div class="calc-service">
+                <label>
+                    <input type="checkbox" class="calc-checkbox" data-price="15000"> Контекстная реклама (15 000₽/мес)
+                </label>
+            </div>
+            
+            <div class="calc-service">
+                <label>
+                    <input type="checkbox" class="calc-checkbox" data-price="12000"> Копирайтинг (12 000₽/мес)
+                </label>
+            </div>
+            
+            <div class="calc-total" id="total">Итого: 0₽</div>
+        </div>
+    </div>
+
+    <!-- Блог -->
+    <div id="blog" class="page">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; color: var(--neon-yellow);">Блог и кейсы</h2>
+        
+        <div class="blog-grid">
+            <article class="blog-post">
+                <div class="blog-image">📈</div>
+                <div class="blog-content">
+                    <h3>5 ошибок в таргете, которые убивают бюджет</h3>
+                    <p>Разбираю самые частые ошибки в настройке таргетированной рекламы и показываю, как их избежать.</p>
+                    <small style="color: var(--cyber-blue);">12.01.2025</small>
+                </div>
+            </article>
+            
+            <article class="blog-post">
+                <div class="blog-image">💰</div>
+                <div class="blog-content">
+                    <h3>Как увеличить ROI в 3 раза за месяц</h3>
+                    <p>Реальный кейс: превратил убыточную рекламную кампанию в прибыльную с ROI 380%.</p>
+                    <small style="color: var(--cyber-blue);">08.01.2025</small>
+                </div>
+            </article>
+            
+            <article class="blog-post">
+                <div class="blog-image">🎯</div>
+                <div class="blog-content">
+                    <h3>Секреты продающих текстов</h3>
+                    <p>Формулы и приемы, которые заставляют читать и покупать. С примерами и разборами.</p>
+                    <small style="color: var(--cyber-blue);">05.01.2025</small>
+                </div>
+            </article>
+            
+            <article class="blog-post">
+                <div class="blog-image">📱</div>
+                <div class="blog-content">
+                    <h3>SMM тренды 2025</h3>
+                    <p>Что будет актуально в социальных сетях и как подготовиться к изменениям алгоритмов.</p>
+                    <small style="color: var(--cyber-blue);">02.01.2025</small>
+                </div>
+            </article>
+            
+            <article class="blog-post">
+                <div class="blog-image">🛒</div>
+                <div class="blog-content">
+                    <h3>Авито для бизнеса: полный гайд</h3>
+                    <p>Пошаговая инструкция по настройке эффективного продвижения на крупнейшей площадке.</p>
+                    <small style="color: var(--cyber-blue);">28.12.2024</small>
+                </div>
+            </article>
+            
+            <article class="blog-post">
+                <div class="blog-image">🎨</div>
+                <div class="blog-content">
+                    <h3>Психология цвета в дизайне</h3>
+                    <p>Как правильно использовать цвета для увеличения конверсии сайта на 40%+.</p>
+                    <small style="color: var(--cyber-blue);">25.12.2024</small>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Контакты -->
+    <div id="contact" class="page">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 2rem; color: var(--neon-yellow);">Связаться со мной</h2>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+            <div class="glass-card">
+                <h3 style="color: var(--cyber-blue); margin-bottom: 1rem;">Контактная информация</h3>
+                <div style="margin-bottom: 1rem;">
+                    <p>📧 <strong>Email:</strong> narek.marketing@gmail.com</p>
+                    <p>📱 <strong>Telegram:</strong> @narek_digital</p>
+                    <p>📞 <strong>WhatsApp:</strong> +7 (999) 123-45-67</p>
+                    <p>📍 <strong>Город:</strong> Москва</p>
+                </div>
+                
+                <h4 style="color: var(--neon-pink); margin: 1.5rem 0 1rem 0;">Социальные сети:</h4>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="#" class="neon-btn" style="padding: 0.5rem 1rem;">VK</a>
+                    <a href="#" class="neon-btn" style="padding: 0.5rem 1rem;">Instagram</a>
+                    <a href="#" class="neon-btn" style="padding: 0.5rem 1rem;">LinkedIn</a>
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1rem; background: rgba(255, 215, 0, 0.1); border-radius: 10px;">
+                    <h4 style="color: var(--neon-yellow);">⚡ Быстрый ответ в течение 2 часов</h4>
+                    <p>Работаю без выходных. Всегда на связи для обсуждения ваших проектов!</p>
+                </div>
+            </div>
+            
+            <form class="contact-form" onsubmit="sendMessage(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Телефон">
+                </div>
+                <div class="form-group">
+                    <select style="width: 100%; padding: 1rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 10px; color: white;">
+                        <option value="">Выберите услугу</option>
+                        <option value="target">Таргетированная реклама</option>
+                        <option value="copy">Копирайтинг</option>
+                        <option value="smm">SMM продвижение</option>
+                        <option value="design">Веб-дизайн</option>
+                        <option value="context">Контекстная реклама</option>
+                        <option value="avito">Продвижение на Авито</option>
+                        <option value="complex">Комплексное продвижение</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="Расскажите о вашем проекте"></textarea>
+                </div>
+                <button type="submit" class="neon-btn" style="width: 100%;">Отправить заявку</button>
+            </form>
+        </div>
+        
+        <!-- Отзывы клиентов -->
+        <div style="margin-top: 4rem;">
+            <h3 style="text-align: center; color: var(--cyber-blue); margin-bottom: 2rem;">Отзывы клиентов</h3>
+            <div class="services-grid">
+                <div class="glass-card">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(45deg, var(--neon-yellow), var(--cyber-blue)); display: flex; align-items: center; justify-content: center; margin-right: 1rem;">АМ</div>
+                        <div>
+                            <h4>Алексей Морозов</h4>
+                            <small>Владелец интернет-магазина</small>
+                        </div>
+                    </div>
+                    <p>"Нарек увеличил наши продажи в 4 раза! Профессиональный подход, всегда на связи. Рекомендую!"</p>
+                    <div style="color: var(--neon-yellow); margin-top: 1rem;">⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="glass-card">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(45deg, var(--neon-pink), var(--cyber-blue)); display: flex; align-items: center; justify-content: center; margin-right: 1rem;">ЕК</div>
+                        <div>
+                            <h4>Елена Карпова</h4>
+                            <small>Директор клиники</small>
+                        </div>
+                    </div>
+                    <p>"Работали с Нареком над продвижением клиники. Количество записей выросло на 250%! Спасибо за результат."</p>
+                    <div style="color: var(--neon-yellow); margin-top: 1rem;">⭐⭐⭐⭐⭐</div>
+                </div>
+                
+                <div class="glass-card">
+                    <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                        <div style="width: 50px; height: 50px; border-radius: 50%; background: linear-gradient(45deg, var(--cyber-blue), var(--neon-pink)); display: flex; align-items: center; justify-content: center; margin-right: 1rem;">МС</div>
+                        <div>
+                            <h4>Максим Соколов</h4>
+                            <small>Основатель стартапа</small>
+                        </div>
+                    </div>
+                    <p>"С нуля до 500к оборота за 4 месяца - это результат работы Нарека. Настоящий профессионал своего дела!"</p>
+                    <div style="color: var(--neon-yellow); margin-top: 1rem;">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Создание частиц
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                
+                if (Math.random() > 0.5) {
+                    particle.style.background = 'var(--neon-yellow)';
+                    particle.style.boxShadow = '0 0 6px var(--neon-yellow)';
+                } else if (Math.random() > 0.3) {
+                    particle.style.background = 'var(--neon-pink)';
+                    particle.style.boxShadow = '0 0 6px var(--neon-pink)';
+                }
+                
+                particles.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                    createNewParticle();
+                }, parseFloat(particle.style.animationDuration) * 1000);
+            }
+        }
+        
+        function createNewParticle() {
+            const particles = document.getElementById('particles');
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            
+            if (Math.random() > 0.5) {
+                particle.style.background = 'var(--neon-yellow)';
+                particle.style.boxShadow = '0 0 6px var(--neon-yellow)';
+            } else if (Math.random() > 0.3) {
+                particle.style.background = 'var(--neon-pink)';
+                particle.style.boxShadow = '0 0 6px var(--neon-pink)';
+            }
+            
+            particles.appendChild(particle);
+            
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.remove();
+                    createNewParticle();
+                }
+            }, parseFloat(particle.style.animationDuration) * 1000);
+        }
+
+        // Переключение страниц
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            // Анимация появления элементов
+            setTimeout(() => {
+                const fadeElements = document.querySelectorAll('.fade-in');
+                fadeElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, index * 100);
+                });
+            }, 100);
+        }
+
+        // Калькулятор стоимости
+        function updateCalculator() {
+            const checkboxes = document.querySelectorAll('.calc-checkbox');
+            const totalElement = document.getElementById('total');
+            let total = 0;
+            
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    total += parseInt(checkbox.dataset.price);
+                }
+            });
+            
+            totalElement.textContent = `Итого: ${total.toLocaleString()}₽`;
+            
+            if (total > 0) {
+                totalElement.style.color = 'var(--neon-yellow)';
+                totalElement.style.textShadow = '0 0 10px var(--neon-yellow)';
+            } else {
+                totalElement.style.color = 'white';
+                totalElement.style.textShadow = 'none';
+            }
+        }
+
+        // Отправка формы
+        function sendMessage(event) {
+            event.preventDefault();
+            
+            // Анимация кнопки
+            const button = event.target.querySelector('button');
+            const originalText = button.textContent;
+            button.textContent = 'Отправляется...';
+            button.style.background = 'linear-gradient(45deg, var(--cyber-blue), var(--neon-pink))';
+            
+            setTimeout(() => {
+                button.textContent = 'Отправлено! ✅';
+                button.style.background = 'linear-gradient(45deg, #00ff00, #00aa00)';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(45deg, var(--neon-yellow), var(--cyber-blue))';
+                    event.target.reset();
+                }, 2000);
+            }, 1500);
+        }
+
+        // Анимация при скролле
+        function handleScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Динамическое изменение фона
+        function animateBackground() {
+            const body = document.body;
+            const time = Date.now() * 0.0001;
+            
+            const gradient1X = 20 + Math.sin(time) * 10;
+            const gradient1Y = 50 + Math.cos(time * 0.7) * 15;
+            
+            const gradient2X = 80 + Math.sin(time * 0.8) * 12;
+            const gradient2Y = 20 + Math.cos(time * 1.2) * 10;
+            
+            const gradient3X = 40 + Math.sin(time * 1.5) * 8;
+            const gradient3Y = 80 + Math.cos(time * 0.9) * 12;
+            
+            body.style.background = `
+                radial-gradient(circle at ${gradient1X}% ${gradient1Y}%, rgba(255, 0, 170, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at ${gradient2X}% ${gradient2Y}%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at ${gradient3X}% ${gradient3Y}%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+                var(--dark-bg)
+            `;
+            
+            requestAnimationFrame(animateBackground);
+        }
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            // Обработчики событий
+            document.querySelectorAll('.calc-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', updateCalculator);
+            });
+            
+            window.addEventListener('scroll', handleScroll);
+            
+            // Первоначальная анимация
+            setTimeout(() => {
+                const fadeElements = document.querySelectorAll('.fade-in');
+                fadeElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, index * 100);
+                });
+            }, 500);
+            
+            // Запуск анимации фона
+            animateBackground();
+            
+            // Эффект печатающегося текста для заголовка
+            const heroTitle = document.querySelector('.hero h1');
+            const originalText = heroTitle.textContent;
+            heroTitle.textContent = '';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < originalText.length) {
+                    heroTitle.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            
+            setTimeout(typeWriter, 1000);
+        });
+
+        // Эффект мыши - светящийся курсор
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.createElement('div');
+            cursor.style.position = 'fixed';
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            cursor.style.width = '4px';
+            cursor.style.height = '4px';
+            cursor.style.background = 'var(--cyber-blue)';
+            cursor.style.borderRadius = '50%';
+            cursor.style.pointerEvents = 'none';
+            cursor.style.zIndex = '9999';
+            cursor.style.boxShadow = '0 0 10px var(--cyber-blue)';
+            cursor.style.animation = 'cursorFade 0.5s ease-out forwards';
+            
+            document.body.appendChild(cursor);
+            
+            setTimeout(() => cursor.remove(), 500);
+        });
+        
+        // CSS анимация для курсора
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes cursorFade {
+                0% { opacity: 1; transform: scale(1); }
+                100% { opacity: 0; transform: scale(0.5); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
